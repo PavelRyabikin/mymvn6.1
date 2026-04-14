@@ -110,4 +110,34 @@ public class RadioTest {
         radio.decreaseVolume();
         Assertions.assertEquals(0, radio.getCurrentVolume());
     }
+
+    @Test
+    public void shouldCreateStations() {
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(15);
+        Assertions.assertEquals(15, radio.getCurrentStation());
+    }
+
+    @Test
+    public void shouldNextStantionAfterLast() {
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(19);
+        radio.next();
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void shouldPrevStationBeforeFirst() {
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(0);
+        radio.prev();
+        Assertions.assertEquals(19, radio.getCurrentStation());
+    }
+
+    @Test
+    public void shouldNotSetStationMoreNax() {
+        Radio radio = new Radio(20);
+        radio.setCurrentStation(21);
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
 }
