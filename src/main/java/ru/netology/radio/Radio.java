@@ -3,6 +3,14 @@ package ru.netology.radio;
 public class Radio {
     private int currentStation;
     private int currentVolume;
+    private int countStation = 10;
+
+    public Radio() {
+    }
+
+    public Radio(int countStation) {
+        this.countStation = countStation;
+    }
 
     public int getCurrentStation() {
         return currentStation;
@@ -12,7 +20,7 @@ public class Radio {
         if (currentStation < 0) {
             return;
         }
-        if (currentStation > 9) {
+        if (currentStation > countStation - 1) {
             return;
         }
         this.currentStation = currentStation;
@@ -33,8 +41,8 @@ public class Radio {
     }
 
     public void next() {
-        if (currentStation != 9) {
-            currentStation = currentStation + 1;
+        if (currentStation != countStation - 1) {
+            currentStation++;
         } else {
             currentStation = 0;
         }
@@ -42,21 +50,21 @@ public class Radio {
 
     public void prev() {
         if (currentStation != 0) {
-            currentStation = currentStation - 1;
+            currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = countStation - 1;
         }
     }
 
     public void increaseVolume() {
         if (currentVolume < 100) {
-            currentVolume = currentVolume + 1;
+            currentVolume++;
         }
     }
 
     public void decreaseVolume() {
         if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
+            currentVolume--;
         }
     }
 }
