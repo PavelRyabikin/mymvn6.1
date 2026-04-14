@@ -1,25 +1,30 @@
 package ru.netology.radio;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+
 public class Radio {
     private int currentStation;
     private int currentVolume;
+    private int countStation = 10;
 
-    public int getCurrentStation() {
-        return currentStation;
+    public Radio(int countStation) {
+        this.countStation = countStation;
     }
 
     public void setCurrentStation(int currentStation) {
         if (currentStation < 0) {
             return;
         }
-        if (currentStation > 9) {
+        if (currentStation > countStation - 1) {
             return;
         }
         this.currentStation = currentStation;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
     }
 
     public void setCurrentVolume(int currentVolume) {
@@ -33,8 +38,8 @@ public class Radio {
     }
 
     public void next() {
-        if (currentStation != 9) {
-            currentStation = currentStation + 1;
+        if (currentStation != countStation - 1) {
+            currentStation++;
         } else {
             currentStation = 0;
         }
@@ -42,21 +47,21 @@ public class Radio {
 
     public void prev() {
         if (currentStation != 0) {
-            currentStation = currentStation - 1;
+            currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = countStation - 1;
         }
     }
 
     public void increaseVolume() {
         if (currentVolume < 100) {
-            currentVolume = currentVolume + 1;
+            currentVolume++;
         }
     }
 
     public void decreaseVolume() {
         if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
+            currentVolume--;
         }
     }
 }
